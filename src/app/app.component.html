@@ -1,0 +1,26 @@
+<ion-app>
+  <ion-split-pane>
+    <!--  our side menu  -->
+    <ion-menu menuId="aboutMenu"> 
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Tài khoản</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item menuClose>{{this.username}}</ion-item>
+          <ion-item (click)="logout()">Đăng xuất</ion-item>
+        </ion-list>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-item>Version: 1.0.0</ion-item>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+
+    <!-- the main content -->
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

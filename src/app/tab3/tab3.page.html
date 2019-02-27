@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title color="light">
+      Cảnh báo
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="true"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="tab-wrap">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <input type="radio" name="tabs" id="tab1" checked>
+    <div class="tab-label-content" id="tab1-content">
+      <label class="tab-label" for="tab1" (click)=reloadActivities()>Hoạt động<ion-badge
+          *ngIf="this.count_activities > 0" color="danger" slot="start">{{this.count_activities}}</ion-badge></label>
+      <div class="tab-content">
+        <ion-item lines="full" *ngFor="let activity of data_activities; let i=index">
+          <ion-thumbnail>
+            <img src="../../assets/image/logo.png">
+          </ion-thumbnail>
+          <ion-label padding="start">
+            <h2>{{activity.location_name}}</h2>
+            <p>{{activity.ref_name}} đang {{activity.value}}</p>
+          </ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+          <ion-label padding="start">
+            <h2>{{activity.ts | date: 'dd/MM/yyyy'}}</h2>
+            <p>{{activity.ts | date: 'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+        <p *ngIf="data_activities?.length === 0" text-center>Chưa có dữ liệu nào</p>
+        <ion-button color="success" padding expand="block" (click)="loadMore()"> Tải thêm dữ liệu
+        </ion-button>
+      </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tab2">
+    <div class="tab-label-content" id="tab2-content">
+      <label class="tab-label" for="tab2" (click)=reloadMalfunctions()>Sự cố</label>
+      <div class="tab-content">
+        <ion-item lines="full" *ngFor="let malfunction of data_malfunctions; let i=index">
+          <ion-thumbnail slot="start">
+            <img src="../../assets/image/logo.png">
+          </ion-thumbnail>
+          <ion-label padding="start">
+            <h2>{{malfunction.location_name}}</h2>
+            <p>{{malfunction.type}} đang {{malfunction.value}}</p>
+          </ion-label>
+          <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+          <ion-label padding="start">
+            <h2>{{malfunction.ts | date: 'dd/MM/yyyy'}}</h2>
+            <p>{{malfunction.ts | date: 'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+        <p *ngIf="data_malfunctions?.length === 0" text-center>Chưa có dữ liệu nào</p>
+        <ion-button color="success" padding expand="block" (click)="loadMoreMalfunction()"> Tải thêm dữ liệu
+        </ion-button>
+      </div>
+    </div>
+    <div class="slide"></div>
+  </div>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-content text-center>
+  <div style="background-image: url('../../assets/image/background.png'); height: 100%; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+    <div style="padding-top: 20%">
+    </div>
+    <img src="../../../assets/image/logo_mplatform.png" style="width: 50%;">
+    <div style="padding-top: 5%">
+    </div>
+    <div class="login">
+      <form class="login-container" [formGroup]="loginForm">
+        <p><input placeholder="Tên đăng nhập" type="text" formControlName="username" required></p>
+        <p><input placeholder="Mật khẩu" type="password" formControlName="password" required></p>
+      </form>
+    </div>
+    <ion-button color="success" padding expand="block" [disabled]="!loginForm.valid" (click)="login()">Đăng nhập
+    </ion-button>
+    <div style="padding-top: 10%">
+    </div>
+    <img src="../../../assets/image/logo_company.png" style="width: 50%;">
+    <div style="padding-bottom: 10%">
+    </div>
+  </div>
+</ion-content>
